@@ -23,17 +23,14 @@ async def on_ready():
 
 async def move_message_to_log(message):
     channel = client.get_channel(config["log_channel_id"])
-    pinned_messages = await channel.pins()
+    message_copy = await channel.send(content = message.content, files = [await f.to_file() for f in message.attachments])
 
-    if message not in pinned_messages:
-        message_copy = await channel.send(content = message.content, files = [await f.to_file() for f in message.attachments])
+    try:
+        await message_copy.add_reaction(message.reactions[0])
+    except discord.errors.HTTPException:
+        await message_copy.add_reaction("🍑")
 
-        try:
-            await message_copy.add_reaction(message.reactions[0])
-        except discord.errors.HTTPException:
-            await message_copy.add_reaction("🍑")
-
-        await message.delete()
+    await message.delete()
 
 @client.event
 async def on_raw_reaction_add(payload):
