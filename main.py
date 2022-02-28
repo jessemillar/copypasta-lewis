@@ -8,6 +8,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
+    await update_total_message_count()
 
     channel = client.get_channel(config["main_channel_id"])
     all_messages = await channel.history(limit = 100000).flatten()
@@ -21,6 +22,12 @@ async def on_ready():
             await move_message_to_log(message)
         i += 1
 
+async def update_total_message_count():
+    channel = client.get_channel(config["main_channel_id"])
+    all_messages = await channel.history(limit = 100000).flatten()
+    total_message_count = len(all_messages)
+    await client.change_presence(activity=discord.Game(name="with {0} todo items".format(total_message_count)))
+
 async def move_message_to_log(message):
     channel = client.get_channel(config["log_channel_id"])
     message_copy = await channel.send(content = message.content, files = [await f.to_file() for f in message.attachments])
@@ -31,6 +38,7 @@ async def move_message_to_log(message):
         await message_copy.add_reaction("🍑")
 
     await message.delete()
+    await update_total_message_count()
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -58,6 +66,7 @@ async def on_raw_reaction_remove(payload):
     message_original = await client.get_channel(payload.channel_id).fetch_message(payload.message_id)
     await client.get_channel(config["main_channel_id"]).send(message_original.content)
     await message_original.delete()
+    await update_total_message_count()
 
 # Load config json
 with open("config.json") as fp:

@@ -27,3 +27,4 @@ Copypasta Lewis exists to help your life be more organized. He's sorta like a bu
 1. Post messages in your main channel (`main_channel_id`) that you want to use to remind yourself of something later.
 1. Once you've done whatever the message reminded you about, add an emoji reaction to the message.
 1. Copypasta Lewis will move that message to the log channel (`log_channel_id`) to get it off your plate.
+1. Lewis' Discord status will update to show how many more messages you have left to deal with.
