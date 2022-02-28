@@ -4,6 +4,7 @@ Copypasta Lewis exists to help your life be more organized. He's sorta like a bu
 
 ## Setup
 
+1. Install the `discord.py` library
 1. Create a Discord bot and add it to your server.
 1. Make a `config.json` as outlined below.
 1. Grant `copypasta-lewis` access to the two channels you put in `config.json`
