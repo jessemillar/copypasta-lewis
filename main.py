@@ -46,6 +46,11 @@ async def on_message(message):
     await update_total_message_count()
 
 @client.event
+async def on_message_delete(message):
+    print("Someone deleted a message!")
+    await update_total_message_count()
+
+@client.event
 async def on_raw_reaction_add(payload):
     if payload.member == client.user:
         return
