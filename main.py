@@ -41,6 +41,11 @@ async def move_message_to_log(message):
     await update_total_message_count()
 
 @client.event
+async def on_message(message):
+    print("Someone typed a message!")
+    await update_total_message_count()
+
+@client.event
 async def on_raw_reaction_add(payload):
     if payload.member == client.user:
         return
