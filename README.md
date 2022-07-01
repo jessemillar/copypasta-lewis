@@ -9,6 +9,7 @@ Copypasta Lewis exists to help your life be more organized. He's sorta like a bu
 1. Make a `config.json` as outlined below.
 1. Grant `copypasta-lewis` access to the two channels you put in `config.json`
 1. Run `python3 main.py`.
+	- You can specify a specific config file to load by passing it as an argument: `python3 main.py config-custom.json`
 
 ### `config.json`
 
