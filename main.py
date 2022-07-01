@@ -1,6 +1,7 @@
 import discord
 import json
 import logging
+import sys
 
 logging.basicConfig()
 client = discord.Client()
@@ -78,8 +79,14 @@ async def on_raw_reaction_remove(payload):
     await message_original.delete()
     await update_total_message_count()
 
+def get_config_file():
+    if len(sys.argv) > 1:
+        return sys.argv[1]
+    else:
+        return "config.json"
+
 # Load config json
-with open("config.json") as fp:
+with open(get_config_file()) as fp:
     config = json.load(fp)
 
 print("Pooting...")
