@@ -5,6 +5,7 @@ Copypasta Lewis exists to help your life be more organized. He's sorta like a bu
 ## Setup
 
 1. Install the `discord.py` library
+	- Install the [SendGrid library](https://github.com/sendgrid/sendgrid-python) if using the Things Cloud functionality
 1. Create a Discord bot with "532576331840" permissions and [add it to your server](https://discordjs.guide/preparations/adding-your-bot-to-servers.html#bot-invite-links).
 1. Make a `config.json` as outlined below.
 1. Manually add `copypasta-lewis` to the two channels you put in `config.json` (in the "edit channel" menu)
